@@ -6,10 +6,13 @@ import { mkdirSync, writeFileSync } from "node:fs";
 // detail (team building, trust fall, HR), a real joke with a turn, tight.
 const JOKE =
   "Our team building exercise was a trust fall \u2014 nobody caught me, but HR caught the complaint.";
+const MIN_CHARS = 1;
 const MAX_CHARS = 200;
 
-if (JOKE.length > MAX_CHARS) {
-  throw new Error(`Joke is ${JOKE.length} chars, over the ${MAX_CHARS}-char limit`);
+if (JOKE.length < MIN_CHARS || JOKE.length > MAX_CHARS) {
+  throw new Error(
+    `Joke is ${JOKE.length} chars, outside the ${MIN_CHARS}-${MAX_CHARS}-char range`,
+  );
 }
 
 mkdirSync("/output", { recursive: true });
